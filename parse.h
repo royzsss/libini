@@ -8,3 +8,4 @@ enum {
 
 void process_comment(char buf[]);
 void process_special_char(char buf[]);
+void process_blank(char buf[]);

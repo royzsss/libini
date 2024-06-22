@@ -10,19 +10,24 @@ void process_comment(char buf[])
 
 void process_special_char(char buf[])
 {
-    int buflen = strlen(buf);
+    char *end = buf + strlen(buf) - 1;
 
-    char *tmp = (char *)malloc(buflen + 1);
-    memset(tmp, 0x0, buflen + 1);
+    while (end > buf && ((unsigned char)*end == 0x0a || (unsigned char)*end == 0x0d))
+        *end-- = '\0';
+}
 
-    strcpy(tmp, buf);
-    memset(buf, 0x0, buflen);
+void process_blank(char buf[])
+{
+    char *start = buf;
+    char *end = buf + strlen(buf) - 1;
 
-    for (int i = 0, j = 0; i < buflen; i++)
-        if (tmp[i] != 0x0a || tmp[i] != 0x0d || tmp[i] != 0x20)
-            buf[j++] = tmp[i];
+    while (isspace((unsigned char)*start))
+        start++;
+    while (end > buf && isspace((unsigned char)*end))
+        *end-- = '\0';
 
-    free(tmp);
+    if (start != buf)
+        memmove(buf, start, (end - start + 2)); // +2为了将同时移动末尾的'\0'
 }
 
 int check_line_content(char buf[], char category[], char key[], char value[])
