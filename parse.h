@@ -6,6 +6,5 @@ enum {
     TYPE_KEY_VALUE
 };
 
-void process_comment(char buf[]);
-void process_special_char(char buf[]);
-void process_blank(char buf[]);
+void process_line_buf(char buf[]);
+int check_line_content(char buf[], char category[], char key[], char value[]);
