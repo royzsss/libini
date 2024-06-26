@@ -11,4 +11,4 @@ noinst_HEADERS = ini-def.h list.h parse.h
 AM_CFLAGS = -fPIC
 AM_LDFLAGS = -shared
 
-SUBDIRS = test
+SUBDIRS = ./ test

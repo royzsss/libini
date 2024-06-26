@@ -22,7 +22,7 @@ ini_t *ini_init(const char filename[])
     return it;
 }
 
-int parse_ini(ini_t *it)
+int ini_parse(ini_t *it)
 {
     int ret = 0;
     char lineBuf[256] = {0};
@@ -64,7 +64,7 @@ finish:
     return ret;
 }
 
-int rewrite_ini(ini_t *it)
+int ini_rewrite(ini_t *it)
 {
     int ret = 0;
     FILE *fp = fopen(it->filename, "w");
@@ -94,7 +94,7 @@ finish:
     return ret;
 }
 
-int get_value_int(ini_t *it, const char cate[], const char key[], int *value)
+int ini_get_value_int(ini_t *it, const char cate[], const char key[], int *value)
 {
     catelist *cateTmpList = find_category(it, cate);
     if (cateTmpList == NULL)
@@ -115,7 +115,7 @@ int get_value_int(ini_t *it, const char cate[], const char key[], int *value)
     return -1;
 }
 
-int get_value_str(ini_t *it, const char cate[], const char key[], char value[])
+int ini_get_value_str(ini_t *it, const char cate[], const char key[], char value[])
 {
     catelist *cateTmpList = find_category(it, cate);
     if (cateTmpList == NULL)
@@ -137,7 +137,7 @@ int get_value_str(ini_t *it, const char cate[], const char key[], char value[])
     return -1;
 }
 
-int set_value(ini_t *it, const char cate[], const char key[], const char value[])
+int ini_set_value(ini_t *it, const char cate[], const char key[], const char value[])
 {
     catelist *cateTmpList = find_category(it, cate);
     if (cateTmpList == NULL)
