@@ -54,7 +54,7 @@ int check_line_content(char buf[], char category[], char key[], char value[])
         strncpy(category, buf + 1, strlen(buf + 1) - 1);
         category[strlen(category)] = '\0';
         return TYPE_CATEGORY;
-    } else if (start != '=' && end != '=' && strchr(buf, '=')) { // key=value
+    } else if (start != '=' && strchr(buf, '=')) { // key=value
         char *equal = strchr(buf, '=');
         strncpy(key, buf, equal - buf);
         key[strlen(key)] = '\0';
